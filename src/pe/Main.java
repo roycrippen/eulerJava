@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 import static java.lang.Thread.currentThread;
 
+@SuppressWarnings("WeakerAccess")
 public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -12,10 +13,8 @@ public class Main {
 
         long startTime = System.currentTimeMillis();
 
-//        Stream<String> allSolutions = P001_010.solutions;
-//        allSolutions = Stream.concat(allSolutions, P011_020.solutions);
-
-        Stream<String> allSolutions = P011_020.solutions;
+        Stream<String> allSolutions = P001_010.solutions;
+        allSolutions = Stream.concat(allSolutions, P011_020.solutions);
 
         allSolutions
                 .parallel()

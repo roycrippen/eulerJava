@@ -1,24 +1,13 @@
 package pe;
 
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.IntToDoubleFunction;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.sqrt;
 
-/**
- * Created by roy on 12/13/16.
- */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Common {
 
     // common assertion check for Project Euler problems
@@ -75,7 +64,7 @@ public class Common {
     }
 
 
-    // returns greatest common divisor of m ans n
+    // returns greatest common divisor of m and n
     public static long gcd(long m, long n) {
         while(m != 0) {
             long m_old = m;

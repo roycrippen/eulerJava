@@ -8,10 +8,7 @@ import java.util.stream.Stream;
 import static pe.Common.assertEq;
 import static pe.Common.readTextFile;
 
-/**
- * Created by roy on 12/17/16.
- */
-public class P011_020 {
+class P011_020 {
 
     // problem 11 ----------------------------------------------7
     // Largest product in a grid
@@ -118,14 +115,11 @@ public class P011_020 {
 
     // problem 0 ----------------------------------------------7
     //
+    @SuppressWarnings("unused")
     private static String p01() {
 
-
-
         Function<Long, Long> solve;
-        solve = n -> {
-            return n;
-        };
+        solve = n -> n;
 
         assertEq(solve.apply(0L), 0, "p01 test");
 

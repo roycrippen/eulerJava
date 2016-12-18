@@ -6,9 +6,7 @@ import java.util.List;
 
 import static java.lang.Math.sqrt;
 
-/**
- * Created by roy on 12/15/16.
- */
+@SuppressWarnings("WeakerAccess")
 public class Primes {
 
     // returns a list of the prime factors of n
