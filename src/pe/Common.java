@@ -1,6 +1,7 @@
 package pe;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -110,6 +111,67 @@ public class Common {
 
         return Collections.emptyList();
     }
+
+    // return N! as a BigInteger
+    public static BigInteger factorial(long n) {
+        BigInteger fact = BigInteger.ONE;
+        if (n > 1) {
+            for (long i = 2; i <= n; i++) {
+                fact = fact.multiply(BigInteger.valueOf(i));
+            }
+        }
+        return fact;
+    }
+
+    // number to word representation
+    // from http://stackoverflow.com/questions/2729752/converting-numbers-in-to-words-c-sharp
+    public static String numberToWords(int number)
+    {
+        if (number == 0)
+            return "zero";
+
+        if (number < 0)
+            return "minus " + numberToWords(Math.abs(number));
+
+        String words = "";
+
+        if ((number / 1000000) > 0) {
+            words += numberToWords(number / 1000000) + " million ";
+            number %= 1000000;
+        }
+
+        if ((number / 1000) > 0) {
+            words += numberToWords(number / 1000) + " thousand ";
+            number %= 1000;
+        }
+
+        if ((number / 100) > 0) {
+            words += numberToWords(number / 100) + " hundred ";
+            number %= 100;
+        }
+
+        if (number > 0) {
+            if (!Objects.equals(words, ""))
+                words += "and ";
+
+            String[] units =
+                    { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                            "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
+            String[] tens  =
+                    { "zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+
+            if (number < 20)
+                words += units[number];
+            else {
+                words += tens[number / 10];
+                if ((number % 10) > 0)
+                    words += "-" + units[number % 10];
+            }
+        }
+        return words;
+    }
+
+
 
 }
 

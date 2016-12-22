@@ -197,7 +197,7 @@ class P001_010 {
         }
     }
 
-    // problem 9 ----------------------------------------------7
+    // problem 9 ----------------------------------------------
     // Special Pythagorean triplet
     private static class P009 extends Euler {
 
@@ -217,7 +217,7 @@ class P001_010 {
     }
 
 
-    // problem 10 ----------------------------------------------7
+    // problem 10 ----------------------------------------------
     // Summation of primes
     private static class P010 extends Euler {
 

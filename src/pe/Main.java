@@ -15,6 +15,7 @@ public class Main {
 
         ArrayList<Euler> allSolutions = P001_010.solutions;
         allSolutions.addAll(P011_020.solutions);
+        allSolutions.addAll(P021_030.solutions);
 
         if (args.length != 0) {
             int problem = Integer.valueOf(args[0]);
