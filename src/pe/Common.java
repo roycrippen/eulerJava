@@ -172,6 +172,18 @@ public class Common {
     }
 
 
+    // Returns an array containing `divisor_sum`(i) for i from 0 to n.
+    public static int[] divisorSumList(int limit) {
+        int[] xs = new int[limit + 1];
+        for (int i = 1; i <= limit / 2; i++) {
+            int j = 2 * i;
+            while (j <= limit) {
+                xs[j] += i;
+                j += i;
+            }
+        }
+        return xs;
+    }
 
 }
 

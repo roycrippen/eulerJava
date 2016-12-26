@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static pe.Common.assertEq;
+import static pe.Common.divisorSumList;
 
 class P021_030 {
 
@@ -12,8 +13,17 @@ class P021_030 {
     private static class P021 extends Euler {
 
         public String run() {
+            final int N = 10_000;
+            int[] amic = divisorSumList(N);
+            int sum = 0;
 
-             return assertEq(0, 0, "p021");
+            for (int i = 0; i <= N; i++) {
+                if (amic[i] < N && i != amic[i] && i == amic[amic[i]]) {
+                    sum += amic[i] + amic[amic[i]];
+                }
+            }
+
+            return assertEq(sum/2, 31626, "p021");
         }
     }
 
