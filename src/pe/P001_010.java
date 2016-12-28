@@ -31,7 +31,8 @@ class P001_010 {
     // Even Fibonacci numbers
     private static String p002() {
 
-        Function<Integer, Long> solve = n -> {
+        Function<Integer, Long> solve;
+        solve = n -> {
             // Stream code for fibonacci found at
             // http://stackoverflow.com/questions/26288818/infinite-fibonacci-sequence-with-memoized-in-java-8
             LongStream fibStream = Stream.iterate(
@@ -53,7 +54,7 @@ class P001_010 {
         };
 
 
-            assertEq(solve.apply(50), 44, "p002 test");
+        assertEq(solve.apply(50), 44, "p002 test");
 
             long res = solve.apply(4_000_000);
             return assertEq(res, 4613732, "p002");
@@ -64,9 +65,10 @@ class P001_010 {
     // Largest prime factor
     private static String p003() {
 
-        Function<Long, Long> solve = n -> Primes.primeFactors(n).stream().max(Long::compare).orElse(0L);
+        Function<Long, Long> solve;
+        solve = n -> Primes.primeFactors(n).stream().max(Long::compare).orElse(0L);
 
-            assertEq(solve.apply(13195L), 29, "p003 test");
+        assertEq(solve.apply(13195L), 29, "p003 test");
 
             long res = solve.apply(600851475143L);
             return assertEq(res, 6857, "p003");
@@ -77,7 +79,8 @@ class P001_010 {
     // Largest palindrome product
     private static String p004() {
 
-        Function<Integer, Long> solve = n -> {
+        Function<Integer, Long> solve;
+        solve = n -> {
             long lower;
             long upper;
 
@@ -108,7 +111,7 @@ class P001_010 {
         };
 
 
-            assertEq(solve.apply(2), 9009, "p004 test");
+        assertEq(solve.apply(2), 9009, "p004 test");
 
             long res = solve.apply(3);
             return assertEq(res, 906609, "p004");
@@ -118,9 +121,10 @@ class P001_010 {
     // Smallest multiple
     private static String p005() {
 
-        Function<Long, Long> solve = n -> LongStream.rangeClosed(1, n).reduce(1, Common::lcm);
+        Function<Long, Long> solve;
+        solve = n -> LongStream.rangeClosed(1, n).reduce(1, Common::lcm);
 
-            assertEq(solve.apply(10L), 2520, "p005 test");
+        assertEq(solve.apply(10L), 2520, "p005 test");
 
             long res = solve.apply(20L);
             return assertEq(res, 232792560, "p005");
@@ -131,13 +135,14 @@ class P001_010 {
     // Sum square difference
     private static String p006() {
 
-        Function<Long, Long> solve = n -> {
+        Function<Long, Long> solve;
+        solve = n -> {
             long sum = LongStream.rangeClosed(1, n).sum();
             long sumSquared = LongStream.rangeClosed(1, n).reduce(0, (acc, x) -> acc + x * x);
             return sum * sum - sumSquared;
         };
 
-            assertEq(solve.apply(10L), 2640, "p006 test");
+        assertEq(solve.apply(10L), 2640, "p006 test");
 
             long res = solve.apply(100L);
             return assertEq(res, 25164150, "p006");
@@ -200,7 +205,8 @@ class P001_010 {
     // Summation of primes
     private static String p010() {
 
-        Function<Integer, Long> solve = n -> {
+        Function<Integer, Long> solve;
+        solve = n -> {
             switch (n) {
                 case 0:
                 case 1:
@@ -226,13 +232,13 @@ class P001_010 {
             }
         };
 
-            assertEq(solve.apply(10), 17, "p010 test");
+        assertEq(solve.apply(10), 17, "p010 test");
 
             long res = solve.apply(2_000_000);
             return assertEq(res, 142913828922L, "p010");
     }
 
+
     final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
             p001(), p002(), p003(), p004(), p005(), p006(), p007(), p008(), p009(), p010()));
-
 }
