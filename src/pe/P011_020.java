@@ -4,21 +4,21 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static pe.Common.assertEq;
+import static pe.Common.readTextFile;
 import static pe.Common.factorial;
 import static pe.Common.numberToWords;
-import static pe.Common.readTextFile;
 
 class P011_020 {
 
-    // problem 11 ----------------------------------------------
+    // problem 11 ----------------------------------------------7
     // Largest product in a grid
-    private static class P011 extends Euler {
+    private static String p011() {
 
-        public String run() {
             int[][] data = readTextFile("p011.txt")
                     .stream()
                     .map(s -> Stream
@@ -54,24 +54,14 @@ class P011_020 {
             }
 
             return assertEq(max, 70600674, "p011");
-        }
     }
 
-    // problem 12 ----------------------------------------------
+    // problem 12 ----------------------------------------------7
     // Highly divisible triangular number
-    private static class P012 extends Euler {
+    private static String p012() {
 
-        static Integer solve(Integer n) {
-            for (int i = 2; ; i += 4) {
-                int temp = factor_cnt(i + 1);
-                if (temp * factor_cnt(i / 2) > n)
-                    return i * (i + 1) / 2;
-                if (temp * factor_cnt((i + 2) / 2) > n)
-                    return (i + 1) * (i + 2) / 2;
-            }
-        }
-
-        static Integer factor_cnt(Integer n) {
+        Function<Integer, Integer> factor_cnt;
+        factor_cnt = n -> {
             if (n < 2)
                 return 1;
             int factors = 1;
@@ -87,22 +77,30 @@ class P011_020 {
                 factors *= p + 1;
             }
             return factors;
-        }
+        };
 
-        public String run() {
-            assertEq(solve(6), 120, "p012 test");
+        Function<Integer, Integer> solve;
+        solve = n -> {
+            for (int i = 2; ; i += 4) {
+                int temp = factor_cnt.apply(i + 1);
+                if (temp * factor_cnt.apply(i / 2) > n)
+                    return i * (i + 1) / 2;
+                if (temp * factor_cnt.apply((i + 2) / 2) > n)
+                    return (i + 1) * (i + 2) / 2;
+            }
+        };
 
-            long res = solve(500);
+        assertEq(solve.apply(6), 120, "p012 test");
+
+            long res = solve.apply(500);
             return assertEq(res, 76576500, "p012");
-        }
     }
 
 
-    // problem 13 ----------------------------------------------
+    // problem 13 ----------------------------------------------7
     // Large sum
-    private static class P013 extends Euler {
+    private static String p013() {
 
-        public String run() {
             List<String> xs = readTextFile("p013.txt");
             String bigSum = xs
                     .stream()
@@ -112,14 +110,12 @@ class P011_020 {
 
             long res = Long.parseLong(bigSum.substring(0, 10));
             return assertEq(res, 5537376230L, "p013");
-        }
     }
 
-        // problem 14 ----------------------------------------------
+    // problem 14 ----------------------------------------------
         // Longest Collatz sequence
-        private static class P014 extends Euler {
+        private static String p014() {
 
-            public String run() {
                 final int LIMIT = 1_000_000;
                 int[] cache = new int[LIMIT];
 
@@ -145,14 +141,12 @@ class P011_020 {
                 }
 
                 return assertEq(answer, 837799, "p014");
-        }
     }
 
     // problem 15 ----------------------------------------------
     // Lattice paths
-    private static class P015 extends Euler {
+    private static String p015() {
 
-        public String run() {
             // C(n,r) = n! / ( r! (n - r)! )
             // 40! / (20! (40 - 20)!) = 40!/(40!*20!)
             BigInteger factN = factorial(40);
@@ -160,61 +154,56 @@ class P011_020 {
             Long res = factN.divide(factR.multiply(factR)).longValue();
 
             return assertEq(res, 137846528820L,"p015");
-        }
     }
 
 
     // problem 16 ----------------------------------------------
     // Power digit sum
-    private static class P016 extends Euler {
+    private static String p016() {
 
-        static int solve(int n) {
+        Function<Integer, Integer> solve;
+        solve = n -> {
             BigInteger two = new BigInteger("2");
             return two
                     .pow(n)
                     .toString()
                     .chars()
                     .reduce(0, (acc, c) -> acc + (c - 48));
-       }
+       };
 
-        public String run() {
-            assertEq(solve(15), 26, "p016 test");
+        assertEq(solve.apply(15), 26, "p016 test");
 
-            long res = solve(1000);
+            long res = solve.apply(1000);
             return assertEq(res, 1366, "p016");
-        }
-    } //
+    }
 
 
     // problem 17 ----------------------------------------------
     // Number letter counts
-    private static class P017 extends Euler {
+    private static String p017() {
 
-        static int letterCnt (String s) {
-            return s.chars().reduce(0, (acc, c) -> {
-                if (c != ' ' && c != '-')                    return acc +1;
-                else
-                    return acc;
-            });
-        }
+        Function<String, Integer> letterCnt;
+        letterCnt = s -> s.chars().reduce(0, (acc, c) -> {
+            if (c != ' ' && c != '-')
+                return acc +1;
+            else
+                return acc;
+        });
 
-        static int solve(int n) {
-            return IntStream.rangeClosed(1, n).reduce(0, (acc, x) -> acc + letterCnt(numberToWords(x)));
-        }
+        Function<Integer, Integer> solve;
+        solve = n -> IntStream.rangeClosed(1, n).reduce(0, (acc, x) -> acc + letterCnt.apply(numberToWords(x)));
 
-        public String run() {
-            assertEq(solve(5), 19, "p017 test");
+        assertEq(solve.apply(5), 19, "p017 test");
 
-            long res = solve(1000);
+            long res = solve.apply(1000);
             return assertEq(res, 21124, "p017");
-        }
     }
 
 
     // problem 18 ----------------------------------------------
     // Maximum path sum I
-    private static class P018 extends Euler {
-        public String run() {
+    private static String p018() {
+
             int[][] data = readTextFile("p018.txt")
                     .stream()
                     .map(s -> Stream
@@ -231,16 +220,14 @@ class P011_020 {
 
             long res = (long) data[0][0];
             return assertEq(res, 1074, "p018");
-        }
     }
 
 
 
     // problem 19 ----------------------------------------------
     // Counting Sundays
-    private static class P019 extends Euler {
+    private static String p019() {
 
-        public String run() {
             int[] daysMonth = {0,31,28,31,30,31,30,31,31,30,31,30,31};
             int sundays = 0;
             int day = 1;
@@ -263,50 +250,29 @@ class P011_020 {
             }
 
             return assertEq(sundays, 171, "p019");
-        }
     }
 
 
     // problem 20 ----------------------------------------------
     // Factorial digit sum
-    private static class P020 extends Euler {
+    private static String p020() {
 
-        static Long solve(Long n) {
+        Function<Long, Long> solve;
+        solve = n -> {
             int sum = factorial(n)
                     .toString()
                     .chars()
                     .reduce(0, (acc, x) -> acc + x - 48);
             return (long) sum;
-        }
+        };
 
-        public String run() {
-            assertEq(solve(10L), 27, "p020 test");
+        assertEq(solve.apply(10L), 27, "p020 test");
 
-            long res = solve(100L);
+            long res = solve.apply(100L);
             return assertEq(res, 648, "p020");
-        }
     }
 
-//    // problem 20 ----------------------------------------------
-//    //
-//    @SuppressWarnings("unused")
-//    private static class P020 extends Euler {
-//
-//        static Long solve(Long n) {
-//            return n;
-//        }
-//
-//        public String run() {
-//            assertEq(solve(0L), 0, "p020 test");
-//
-//            long res = solve(0L);
-//            return assertEq(res, 0, "p020");
-//        }
-//    }
 
-
-
-    final static ArrayList<Euler> solutions = new ArrayList<>(Arrays.asList(
-            new P011(), new P012(), new P013(), new P014(), new P015(),
-            new P016(), new P017(), new P018(), new P019(), new P020()));
+    final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
+            p011(), p012(), p013(), p014(), p015(), p016(), p017(), p018(), p019(), p020()));
 }

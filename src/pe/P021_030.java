@@ -2,6 +2,7 @@ package pe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.Function;
 
 import static pe.Common.assertEq;
 import static pe.Common.divisorSumList;
@@ -10,9 +11,8 @@ class P021_030 {
 
     // problem 21 ----------------------------------------------
     // Amicable numbers
-    private static class P021 extends Euler {
+    private static String p021() {
 
-        public String run() {
             final int N = 10_000;
             int[] amic = divisorSumList(N);
             int sum = 0;
@@ -24,29 +24,39 @@ class P021_030 {
             }
 
             return assertEq(sum/2, 31626, "p021");
-        }
+    }
+
+
+    // problem 22 ----------------------------------------------
+    // Names scores
+     private static String p022() {
+
+        Function<Long, Long> solve;
+        solve = n -> n + 1 - 1;
+
+        assertEq(solve.apply(0L), 0, "p022 test");
+
+        long res = solve.apply(0L);
+        return assertEq(res, 0, "p022");
     }
 
 
     // problem 2 ----------------------------------------------
     //
     @SuppressWarnings("unused")
-    private static class P02 extends Euler {
+    private static String p02() {
 
-        static Long solve(Long n) {
-            return n;
-        }
+        Function<Long, Long> solve;
+        solve = n -> n + 1 - 1;
 
-        public String run() {
-            assertEq(solve(0L), 0, "p02 test");
+        assertEq(solve.apply(0L), 0, "p02 test");
 
-            long res = solve(0L);
-            return assertEq(res, 0, "p02");
-        }
+        long res = solve.apply(0L);
+        return assertEq(res, 0, "p02");
     }
 
 
 
-    final static ArrayList<Euler> solutions = new ArrayList<>(Arrays.asList(
-            new P021()));
+    final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
+            p021(), p022()));
 }

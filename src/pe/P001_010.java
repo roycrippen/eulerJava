@@ -1,6 +1,7 @@
 package pe;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -15,24 +16,22 @@ class P001_010 {
 
     // problem 1 ----------------------------------------------
     // Multiples of 3 and 5
-    private static class P001 extends Euler  {
+    private static String p001()  {
 
-        public String run() {
             int res = IntStream
                     .range(3, 1000)
                     .filter(i -> i % 3 == 0 || i % 5 == 0)
                     .sum();
 
             return assertEq(res, 233168, "p001");
-        }
     }
 
 
     // problem 2 ----------------------------------------------
     // Even Fibonacci numbers
-    private static class P002 extends Euler {
+    private static String p002() {
 
-        static Long solve(Integer n) {
+        Function<Integer, Long> solve = n -> {
             // Stream code for fibonacci found at
             // http://stackoverflow.com/questions/26288818/infinite-fibonacci-sequence-with-memoized-in-java-8
             LongStream fibStream = Stream.iterate(
@@ -51,40 +50,34 @@ class P001_010 {
                 tot += fib;
             }
             return tot;
-        }
+        };
 
 
-        public String run() {
-            assertEq(solve(50), 44, "p002 test");
+            assertEq(solve.apply(50), 44, "p002 test");
 
-            long res = solve(4_000_000);
+            long res = solve.apply(4_000_000);
             return assertEq(res, 4613732, "p002");
-        }
     }
 
 
     // problem 3 ----------------------------------------------
     // Largest prime factor
-    private static class P003 extends Euler {
+    private static String p003() {
 
-        static Long solve(Long n) {
-            return Primes.primeFactors(n).stream().max(Long::compare).orElse(0L);
-        }
+        Function<Long, Long> solve = n -> Primes.primeFactors(n).stream().max(Long::compare).orElse(0L);
 
-        public String run() {
-            assertEq(solve(13195L), 29, "p003 test");
+            assertEq(solve.apply(13195L), 29, "p003 test");
 
-            long res = solve(600851475143L);
+            long res = solve.apply(600851475143L);
             return assertEq(res, 6857, "p003");
-        }
     }
 
 
     // problem 4 ----------------------------------------------
     // Largest palindrome product
-    private static class P004 extends Euler {
+    private static String p004() {
 
-        static Long solve(Integer n) {
+        Function<Integer, Long> solve = n -> {
             long lower;
             long upper;
 
@@ -112,71 +105,60 @@ class P001_010 {
                             .map(j -> i * j));
 
             return candidates.filter(x -> x % 11 == 0 && isPalindrome(x)).max().orElse(0L);
-        }
+        };
 
 
-        public String run() {
-            assertEq(solve(2), 9009, "p004 test");
+            assertEq(solve.apply(2), 9009, "p004 test");
 
-            long res = solve(3);
+            long res = solve.apply(3);
             return assertEq(res, 906609, "p004");
-        }
     }
 
     // problem 5 ----------------------------------------------
     // Smallest multiple
-    private static class P005 extends Euler {
+    private static String p005() {
 
-        static Long solve(Long n) {
-            return LongStream.rangeClosed(1, n).reduce(1, Common::lcm);
-        }
+        Function<Long, Long> solve = n -> LongStream.rangeClosed(1, n).reduce(1, Common::lcm);
 
-        public String run() {
-           assertEq(solve(10L), 2520, "p005 test");
+            assertEq(solve.apply(10L), 2520, "p005 test");
 
-            long res = solve(20L);
+            long res = solve.apply(20L);
             return assertEq(res, 232792560, "p005");
-        }
     }
 
 
     // problem 6 ----------------------------------------------
     // Sum square difference
-    private static class P006 extends Euler {
+    private static String p006() {
 
-        static Long solve(Long n) {
+        Function<Long, Long> solve = n -> {
             long sum = LongStream.rangeClosed(1, n).sum();
             long sumSquared = LongStream.rangeClosed(1, n).reduce(0, (acc, x) -> acc + x * x);
             return sum * sum - sumSquared;
-        }
+        };
 
-        public String run() {
-            assertEq(solve(10L), 2640, "p006 test");
+            assertEq(solve.apply(10L), 2640, "p006 test");
 
-            long res = solve(100L);
+            long res = solve.apply(100L);
             return assertEq(res, 25164150, "p006");
-        }
     }
 
 
     // problem 7 ----------------------------------------------
     // 10001st prime
-    private static class P007 extends Euler {
+    private static String p007() {
 
-        public String run() {
             assertEq(nthPrime(6), 13, "p007 test");
 
             long res = nthPrime(10_001);
             return assertEq(res, 104743, "p007");
-        }
     }
 
 
     // problem 8 ----------------------------------------------
     // Largest product in a series
-    private static class P008 extends Euler {
+    private static String p008() {
 
-        public String run() {
             List<Long> data = readTextFile("p008.txt")
                     .stream()
                     .reduce("", (acc, x) -> acc + x)
@@ -194,14 +176,12 @@ class P001_010 {
                     .max().orElse(0);
 
             return assertEq(res, 23514624000L, "p008");
-        }
     }
 
     // problem 9 ----------------------------------------------
     // Special Pythagorean triplet
-    private static class P009 extends Euler {
+    private static String p009() {
 
-        public String run() {
             int res = IntStream
                     .rangeClosed(2, 500)
                     .flatMap(a ->
@@ -213,15 +193,14 @@ class P001_010 {
                     .orElse(0);
 
             return assertEq(res, 31875000, "p009");
-        }
     }
 
 
     // problem 10 ----------------------------------------------
     // Summation of primes
-    private static class P010 extends Euler {
+    private static String p010() {
 
-        static Long solve(Integer n) {
+        Function<Integer, Long> solve = n -> {
             switch (n) {
                 case 0:
                 case 1:
@@ -245,18 +224,15 @@ class P001_010 {
                     }
                     return sum;
             }
-        }
+        };
 
-        public String run() {
-            assertEq(solve(10), 17, "p010 test");
+            assertEq(solve.apply(10), 17, "p010 test");
 
-            long res = solve(2_000_000);
+            long res = solve.apply(2_000_000);
             return assertEq(res, 142913828922L, "p010");
-        }
     }
 
-    final static ArrayList<Euler> solutions = new ArrayList<>(Arrays.asList(
-            new P001(), new P002(), new P003(), new P004(), new P005(),
-            new P006(), new P007(), new P008(), new P009(), new P010()));
+    final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
+            p001(), p002(), p003(), p004(), p005(), p006(), p007(), p008(), p009(), p010()));
 
 }
