@@ -1,5 +1,6 @@
 package pe;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Function;
@@ -99,17 +100,29 @@ class P021_030 {
     // 1000-digit Fibonacci number
     private static String p025() {
 
+        Function<Integer, Integer> solve;
+        solve = n -> {
+            BigInteger limit = BigInteger.ONE;
+            for (int i = 0; i < n-1; i++) {
+                limit = limit.multiply(BigInteger.TEN);
+            }
+            BigInteger a = BigInteger.ZERO;
+            BigInteger b = BigInteger.ONE;
+            int cnt = 0;
+            while (a.compareTo(limit) < 0) {
+                BigInteger x = b;
+                b = a.add(b);
+                a = x;
+                cnt++;
+            }
+            return cnt;
+        };
 
-        Function<Long, Long> solve;
-        solve = n -> n + 1 - 1;
+        assertEq(solve.apply(3), 12, "p025 test");
 
-        assertEq(solve.apply(0L), 0, "p025 test");
-
-        long res = solve.apply(4782L);
-        return assertEq(res, 4782L, "p025");
+        long res = solve.apply(1000);
+        return assertEq(res, 4782, "p025");
     }
-
-
 
 
     // problem 2 ----------------------------------------------
