@@ -5,9 +5,7 @@ import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import static pe.Common.assertEq;
-import static pe.Common.divisorSumList;
-import static pe.Common.readTextFile;
+import static pe.Common.*;
 
 class P021_030 {
 
@@ -55,15 +53,63 @@ class P021_030 {
     // Non-abundant sums
     private static String p023() {
 
+        final int N = 28124;
+        int[] factorSums = divisorSumList(N);
+
+        boolean[] abundants = new boolean[N];
+        for (int i = 0; i < N; i++) {
+            abundants[i] = factorSums[i] > i;
+        }
+
+        int sum = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (abundants[j]) {
+                    if (j >= i) {
+                        sum += i;
+                        break;
+                    }
+                    if (abundants[i - j]) {
+                        break;
+                    }
+                }
+            }
+        }
+
+        return assertEq(sum, 4179871, "p023");
+    }
+
+
+    // problem 24 ----------------------------------------------
+    // Lexicographic permutations
+    private static String p024() {
+
+       int[] xs = {0,1,2,3,4,5,6,7,8,9};
+
+       String resStr = Arrays.stream(nthLexPerm(xs, 999999))
+               .mapToObj(String::valueOf)
+               .reduce("", (s,acc) -> s + acc);
+
+        long res = Long.parseLong(resStr);
+        return assertEq(res, 2783915460L, "p024");
+    }
+
+
+    // problem 25 ----------------------------------------------
+    // 1000-digit Fibonacci number
+    private static String p025() {
+
 
         Function<Long, Long> solve;
         solve = n -> n + 1 - 1;
 
-        assertEq(solve.apply(0L), 0, "p023 test");
+        assertEq(solve.apply(0L), 0, "p025 test");
 
-        long res = solve.apply(0L);
-        return assertEq(res, 0, "p023");
+        long res = solve.apply(4782L);
+        return assertEq(res, 4782L, "p025");
     }
+
+
 
 
     // problem 2 ----------------------------------------------
@@ -83,5 +129,5 @@ class P021_030 {
 
 
     final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
-            p021(), p022(), p023()));
+            p021(), p022(), p023(), p024(), p025()));
 }

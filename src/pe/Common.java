@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.floor;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Common {
@@ -184,6 +185,22 @@ public class Common {
         }
         return xs;
     }
+
+    // recursive nth lexicographic permutation
+    public static int[] nthLexPerm(int[] lmr, int n) {
+        if (lmr.length == 0) {
+            return new int[0];
+        } else {
+            double fact = factorial(lmr.length - 1).doubleValue();
+            int i = (int) floor((double) n / fact);
+            int[] l = Arrays.copyOfRange(lmr, 0, i);
+            int[] r = Arrays.copyOfRange(lmr, i+1, lmr.length);
+            int[] lr = IntStream.concat(Arrays.stream(l), Arrays.stream(r)).toArray();
+            int[] m = {lmr[i]};
+            return IntStream.concat(Arrays.stream(m), Arrays.stream(nthLexPerm(lr, n % (int) fact))).toArray();
+        }
+    }
+
 
 }
 
