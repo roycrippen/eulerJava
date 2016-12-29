@@ -125,6 +125,41 @@ class P021_030 {
     }
 
 
+    // problem 26 ----------------------------------------------
+    // Reciprocal cycles
+    @SuppressWarnings("unused")
+    private static String p026() {
+
+        Function<Integer, Integer> repeatCnt;
+        repeatCnt = n -> {
+            int cnt = 2;
+            if (n % 5 != 0) {
+                int md = 10 % n;
+                while (md != 1 && cnt != n) {
+                    md = (10 * md) % n;
+                    cnt++;
+                }
+            }
+            return cnt;
+        };
+
+        int max = 0;
+        int idx = 0;
+        int i = 3;
+        while (i < 1000) {
+            int current = repeatCnt.apply(i);
+            if (current > max) {
+                max = current;
+                idx = i;
+            }
+            i += 2;
+        }
+
+        return assertEq(idx, 983, "p026");
+    }
+
+
+
     // problem 2 ----------------------------------------------
     //
     @SuppressWarnings("unused")
@@ -142,5 +177,5 @@ class P021_030 {
 
 
     final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
-            p021(), p022(), p023(), p024(), p025()));
+            p021(), p022(), p023(), p024(), p025(), p026()));
 }
