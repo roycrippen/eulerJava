@@ -1,12 +1,15 @@
 package pe;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import static pe.Common.*;
+import static pe.Common.divisorSumList;
+import static pe.Common.nthLexPerm;
+import static pe.Utils.assertEq;
+import static pe.Utils.readTextFile;
 
 class P021_030 {
 
@@ -176,6 +179,19 @@ class P021_030 {
     }
 
 
-    final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
-            p021(), p022(), p023(), p024(), p025(), p026()));
+    // hashmap of problems solves in this class
+    static HashMap<Integer, String> loadSolutionMap() {
+        HashMap<Integer, String> m = new HashMap<>();
+        m.put(21, p021());
+        m.put(22, p022());
+        m.put(23, p023());
+        m.put(24, p024());
+        m.put(25, p025());
+        m.put(26, p026());
+//        m.put(27, p027());
+//        m.put(28, p028());
+//        m.put(29, p029());
+//        m.put(30, p030());
+        return m;
+    }
 }

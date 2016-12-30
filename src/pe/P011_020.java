@@ -1,16 +1,14 @@
 package pe;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static pe.Common.assertEq;
-import static pe.Common.readTextFile;
-import static pe.Common.factorial;
+import static pe.Utils.assertEq;
+import static pe.Utils.readTextFile;
 import static pe.Common.numberToWords;
 
 class P011_020 {
@@ -149,8 +147,8 @@ class P011_020 {
 
             // C(n,r) = n! / ( r! (n - r)! )
             // 40! / (20! (40 - 20)!) = 40!/(40!*20!)
-            BigInteger factN = factorial(40);
-            BigInteger factR = factorial(20);
+            BigInteger factN = Big.factorial(40);
+            BigInteger factR = Big.factorial(20);
             Long res = factN.divide(factR.multiply(factR)).longValue();
 
             return assertEq(res, 137846528820L,"p015");
@@ -259,7 +257,7 @@ class P011_020 {
 
         Function<Long, Long> solve;
         solve = n -> {
-            int sum = factorial(n)
+            int sum = Big.factorial(n)
                     .toString()
                     .chars()
                     .reduce(0, (acc, x) -> acc + x - 48);
@@ -268,11 +266,24 @@ class P011_020 {
 
         assertEq(solve.apply(10L), 27, "p020 test");
 
-            long res = solve.apply(100L);
-            return assertEq(res, 648, "p020");
+        long res = solve.apply(100L);
+        return assertEq(res, 648, "p020");
     }
 
 
-    final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
-            p011(), p012(), p013(), p014(), p015(), p016(), p017(), p018(), p019(), p020()));
+    // hashmap of problems solves in this class
+    static HashMap<Integer, String> loadSolutionMap() {
+        HashMap<Integer, String> m = new HashMap<>();
+        m.put(11, p011());
+        m.put(12, p012());
+        m.put(13, p013());
+        m.put(14, p014());
+        m.put(15, p015());
+        m.put(16, p016());
+        m.put(17, p017());
+        m.put(18, p018());
+        m.put(19, p019());
+        m.put(20, p020());
+        return m;
+    }
 }

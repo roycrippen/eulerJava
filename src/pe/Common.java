@@ -1,10 +1,8 @@
 package pe;
 
-import java.io.*;
-import java.math.BigInteger;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.floor;
@@ -12,21 +10,7 @@ import static java.lang.Math.floor;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Common {
 
-    // common assertion check for Project Euler problems
-    // returns success string or exits application of result and answer are different
-    public static String assertEq(long result, long answer, String problem) {
-        if (answer != result) {
-            System.out.println("ERROR: solution for " + problem + " is wrong.");
-            System.out.println("calculated result = " + result);
-            System.out.println("    actual answer = " + answer);
-            System.out.println("\naborting Euler problems");
-            System.exit(1);
-        }
-        return problem + " = " + result;
-    }
-
-
-    // returns true if value n is a palindrome (reads the same backward or forward)
+    // return true if value n is a palindrome (reads the same backward or forward)
     public static boolean isPalindrome(long n) {
         String s = String.valueOf(n);
 
@@ -48,7 +32,7 @@ public class Common {
 
 
     // recursive version
-    // returns true if value n is a palindrome (reads the same backward or forward)
+    // return true if value n is a palindrome (reads the same backward or forward)
     public static boolean isPalindrome2(long n) {
         return isPalindromeHelper(String.valueOf(n));
     }
@@ -66,7 +50,7 @@ public class Common {
     }
 
 
-    // returns greatest common divisor of m and n
+    // return greatest common divisor of m and n
     public static long gcd(long m, long n) {
         while(m != 0) {
             long m_old = m;
@@ -78,7 +62,7 @@ public class Common {
 
 
     // recursive version
-    // returns greatest common divisor of m ans n
+    // return greatest common divisor of m ans n
     public static long gcd2(long m, long n) {
         return (m == 0) ? abs(n): gcd2(n % m, m);
     }
@@ -90,44 +74,28 @@ public class Common {
     }
 
 
-    // factors of a number
+    // return array of factors of n
     public static int[] factors(int n) {
         return IntStream
                 .rangeClosed(1, n).filter(x -> n % x == 0).toArray();
     }
 
 
-     // return text file from resource folder
-    public static List<String> readTextFile(String fileName) {
-
-        //Get file from resources folder
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        InputStream stream = classLoader.getResourceAsStream(fileName);
-
-        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(stream))) {
-            return buffer.lines().collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
+    // return N! as a Long
+    public static Long factorial(long n) {
+        if (n < 0 || n > 20) {
+            return 1L;
+        } else {
+            return LongStream
+                    .rangeClosed(1, n)
+                    .reduce(1, (acc, i) -> acc * i);
         }
-
-        return Collections.emptyList();
     }
 
-    // return N! as a BigInteger
-    public static BigInteger factorial(long n) {
-        BigInteger fact = BigInteger.ONE;
-        if (n > 1) {
-            for (long i = 2; i <= n; i++) {
-                fact = fact.multiply(BigInteger.valueOf(i));
-            }
-        }
-        return fact;
-    }
 
-    // number to word representation
+    // return word representation of number n
     // from http://stackoverflow.com/questions/2729752/converting-numbers-in-to-words-c-sharp
-    public static String numberToWords(int number)
-    {
+    public static String numberToWords(int number) {
         if (number == 0)
             return "zero";
 
@@ -173,7 +141,7 @@ public class Common {
     }
 
 
-    // Returns an array containing `divisor_sum`(i) for i from 0 to n.
+    // return array containing `divisor_sum`(i) for i from 0 to n.
     public static int[] divisorSumList(int limit) {
         int[] xs = new int[limit + 1];
         for (int i = 1; i <= limit / 2; i++) {
@@ -186,7 +154,8 @@ public class Common {
         return xs;
     }
 
-    // recursive nth lexicographic permutation
+
+    // return nth lexicographic permutation, recursive
     public static int[] nthLexPerm(int[] lmr, int n) {
         if (lmr.length == 0) {
             return new int[0];
@@ -200,8 +169,6 @@ public class Common {
             return IntStream.concat(Arrays.stream(m), Arrays.stream(nthLexPerm(lr, n % (int) fact))).toArray();
         }
     }
-
-
 }
 
 

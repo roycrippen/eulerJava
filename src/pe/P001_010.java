@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-import static pe.Common.assertEq;
+import static pe.Utils.assertEq;
+import static pe.Utils.readTextFile;
 import static pe.Common.isPalindrome;
-import static pe.Common.readTextFile;
 import static pe.Primes.nthPrime;
 
 class P001_010 {
@@ -239,6 +239,19 @@ class P001_010 {
     }
 
 
-    final static ArrayList<String> solutions = new ArrayList<>(Arrays.asList(
-            p001(), p002(), p003(), p004(), p005(), p006(), p007(), p008(), p009(), p010()));
+    // hashmap of problems solves in this class
+    static HashMap<Integer, String> loadSolutionMap() {
+        HashMap<Integer, String> m = new HashMap<>();
+        m.put(1, p001());
+        m.put(2, p002());
+        m.put(3, p003());
+        m.put(4, p004());
+        m.put(5, p005());
+        m.put(6, p006());
+        m.put(7, p007());
+        m.put(8, p008());
+        m.put(9, p009());
+        m.put(10, p010());
+        return m;
+    }
 }
