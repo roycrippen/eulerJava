@@ -15,7 +15,6 @@ public class Big {
         }
         return fact;
     }
-
 }
 
 

@@ -1,8 +1,7 @@
 package pe;
 
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
@@ -180,8 +179,8 @@ class P021_030 {
 
 
     // hashmap of problems solves in this class
-    static HashMap<Integer, String> loadSolutionMap() {
-        HashMap<Integer, String> m = new HashMap<>();
+    static TreeMap<Integer, String> loadSolutionMap() {
+        TreeMap<Integer, String> m = new TreeMap<>();
         m.put(21, p021());
         m.put(22, p022());
         m.put(23, p023());

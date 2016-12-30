@@ -3,6 +3,8 @@ package pe;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -272,8 +274,8 @@ class P011_020 {
 
 
     // hashmap of problems solves in this class
-    static HashMap<Integer, String> loadSolutionMap() {
-        HashMap<Integer, String> m = new HashMap<>();
+    static TreeMap<Integer, String> loadSolutionMap() {
+        TreeMap<Integer, String> m = new TreeMap<>();
         m.put(11, p011());
         m.put(12, p012());
         m.put(13, p013());

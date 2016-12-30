@@ -240,8 +240,8 @@ class P001_010 {
 
 
     // hashmap of problems solves in this class
-    static HashMap<Integer, String> loadSolutionMap() {
-        HashMap<Integer, String> m = new HashMap<>();
+    static TreeMap<Integer, String> loadSolutionMap() {
+        TreeMap<Integer, String> m = new TreeMap<>();
         m.put(1, p001());
         m.put(2, p002());
         m.put(3, p003());

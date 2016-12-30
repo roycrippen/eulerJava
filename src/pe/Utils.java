@@ -37,7 +37,7 @@ public class Utils {
         return Collections.emptyList();
     }
 
-    public static String getOneSolution(String s, HashMap<Integer, String> m) {
+    public static String getOneSolution(String s, TreeMap<Integer, String> m) {
         Scanner sc = new Scanner(s);
         if (!sc.hasNextInt()) {
             System.out.println("'" + s + "' is not a valid positive integer.\nAborting.");
