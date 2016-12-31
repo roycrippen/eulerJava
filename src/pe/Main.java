@@ -15,6 +15,7 @@ public class Main {
         TreeMap<Integer, Supplier<String>> allSolutions = P001_010.loadSolutionMap();
         allSolutions.putAll(P011_020.loadSolutionMap());
         allSolutions.putAll(P021_030.loadSolutionMap());
+        allSolutions.putAll(P031_040.loadSolutionMap());
 
         if (args.length != 0) {
             Supplier<String> oneSolution = Utils.getOneSolution(args[0], allSolutions);

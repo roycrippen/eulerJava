@@ -1,9 +1,7 @@
 package pe;
 
 import java.util.*;
-import java.util.function.IntToLongFunction;
-import java.util.function.LongUnaryOperator;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;

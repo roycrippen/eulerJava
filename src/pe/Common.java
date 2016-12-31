@@ -169,6 +169,15 @@ public class Common {
             return IntStream.concat(Arrays.stream(m), Arrays.stream(nthLexPerm(lr, n % (int) fact))).toArray();
         }
     }
+
+    // return if pandigital over 'len' ints from 'start'
+    // isPandigital("456123", 1, 6) == true, isPandigital("4560123", 0, 7) == true
+    public static boolean isPandigital(String string, int start, int len) {
+        int[] all = {48,49,50,51,52,53,54,55,56,57};
+        int[] check = Arrays.copyOfRange(all, start, start + len);
+        int[] chars = string.chars().sorted().toArray();
+        return Arrays.equals(chars, check);
+    }
 }
 
 
