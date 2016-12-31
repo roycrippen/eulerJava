@@ -2,6 +2,7 @@ package pe;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -37,12 +38,14 @@ public class Utils {
         return Collections.emptyList();
     }
 
-    public static String getOneSolution(String s, TreeMap<Integer, String> m) {
+
+    // return single solution matching key s
+    public static Supplier<String> getOneSolution(String s, TreeMap<Integer, Supplier<String>> m) {
         Scanner sc = new Scanner(s);
         if (!sc.hasNextInt()) {
             System.out.println("'" + s + "' is not a valid positive integer.\nAborting.");
             System.exit(1);
-            return "";
+            return m.get(0);
         } else {
             int i = sc.nextInt();
             if (m.containsKey(i)) {
@@ -50,7 +53,7 @@ public class Utils {
             } else {
                 System.out.println("Problem number '" + i + "' is not in the solution set.\nAborting.");
                 System.exit(1);
-                return "";
+                return m.get(0);
             }
         }
     }

@@ -30,7 +30,7 @@ public class Primes {
     }
 
 
-    // fill array of length with true for prime indexes and false for non-prime
+    // fill array of length n with true for prime indexes and false for non-prime
     public static Boolean[] getPrimes(int n) {
         Boolean[] primes = new Boolean[n];
         Arrays.fill(primes, true);
