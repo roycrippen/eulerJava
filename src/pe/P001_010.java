@@ -22,6 +22,7 @@ class P001_010 {
 
         @Override
         public String get() {
+
             int res = IntStream
                     .range(3, 1000)
                     .filter(i -> i % 3 == 0 || i % 5 == 0)

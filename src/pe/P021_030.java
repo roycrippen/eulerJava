@@ -265,12 +265,30 @@ class P021_030 {
 
         @Override
         public String get() {
+
+            IntBinaryOperator sumDigitPower;
+            sumDigitPower = (n, e) -> {
+                int sum = 0;
+                while (n != 0) {
+                    sum += Math.pow(n % 10, e);
+                    n /= 10;
+                }
+                return sum;
+            };
+
             IntUnaryOperator solve;
-            solve = n -> n + 1 - 1;
+            solve = e -> {
+                int max = (int) Math.pow(9, e) * (e - 1);
+                return IntStream
+                        .range(2, max)
+                        .parallel()
+                        .filter(x -> x == sumDigitPower.applyAsInt(x, e))
+                        .reduce(0, (acc, x) -> acc + x);
+            };
 
-            assertEq(solve.applyAsInt(19316), 19316, "p030 test");
+            assertEq(solve.applyAsInt(4), 19316, "p030 test");
 
-            long res = solve.applyAsInt(443839);
+            long res = solve.applyAsInt(5);
             return assertEq(res, 443839, "p030");
         }
     }
