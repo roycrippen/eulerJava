@@ -14,6 +14,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             int[] ws = new int[201];
             ws[0] = 1;
             int[] ps = {1, 2, 5, 10, 20, 50, 100, 200};
@@ -75,6 +76,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             long res = 0;
             return assertEq(res, 0, "p033");
         }
@@ -87,6 +89,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             long res = 0;
             return assertEq(res, 0, "p034");
         }
@@ -99,6 +102,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             long res = 0;
             return assertEq(res, 0, "p035");
         }
@@ -110,6 +114,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             long res = 0;
             return assertEq(res, 0, "p036");
         }
@@ -121,6 +126,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             long res = 0;
             return assertEq(res, 0, "p037");
         }
@@ -133,6 +139,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             long res = 0;
             return assertEq(res, 0, "p038");
         }
@@ -145,6 +152,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             long res = 0;
             return assertEq(res, 0, "p039");
         }
@@ -157,6 +165,7 @@ class P031_040 {
 
         @Override
         public String get() {
+
             long res = 0;
             return assertEq(res, 0, "p040");
         }

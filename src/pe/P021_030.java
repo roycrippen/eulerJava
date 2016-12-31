@@ -19,6 +19,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             final int N = 10_000;
             int[] amic = divisorSumList(N);
             int sum = 0;
@@ -40,6 +41,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             ToIntFunction<String> getScore;
             getScore = string -> string
                     .chars()
@@ -65,6 +67,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             final int N = 28124;
             int[] factorSums = divisorSumList(N);
 
@@ -99,6 +102,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             int[] xs = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
             String resStr = Arrays.stream(nthLexPerm(xs, 999999))
@@ -117,6 +121,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             LongUnaryOperator solve;
             solve = n -> {
                 BigInteger limit = BigInteger.ONE;
@@ -148,6 +153,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             IntUnaryOperator repeatCnt;
             repeatCnt = n -> {
                 int cnt = 2;
@@ -183,6 +189,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             final int N = Primes.nthPrime(15_000);
             Boolean[] primes = Primes.getPrimes(N+1);
 
@@ -221,6 +228,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             LongUnaryOperator solve;
             solve = n -> LongStream
                     .iterate(3, x -> x + 2)
@@ -241,6 +249,7 @@ class P021_030 {
 
         @Override
         public String get() {
+
             IntUnaryOperator solve;
             solve = n -> {
                 HashSet<Double> hs = new HashSet<>();
@@ -264,8 +273,8 @@ class P021_030 {
     private static class p030 implements Supplier<String> {
 
         @Override
-        public String get() {
 
+        public String get() {
             IntBinaryOperator sumDigitPower;
             sumDigitPower = (n, e) -> {
                 int sum = 0;
