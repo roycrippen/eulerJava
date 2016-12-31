@@ -9,7 +9,7 @@ import static pe.Utils.assertEq;
 class P031_040 {
 
     // problem 31 ----------------------------------------------
-    //
+    // Coin sums
     private static class p031 implements Supplier<String> {
 
         @Override
@@ -31,7 +31,7 @@ class P031_040 {
 
 
     // problem 32 ----------------------------------------------
-    //
+    // Pandigital products
     private static class p032 implements Supplier<String> {
 
         @Override
