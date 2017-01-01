@@ -173,10 +173,16 @@ public class Common {
     // return if pandigital over 'len' ints from 'start'
     // isPandigital("456123", 1, 6) == true, isPandigital("4560123", 0, 7) == true
     public static boolean isPandigital(String string, int start, int len) {
-        int[] all = {48,49,50,51,52,53,54,55,56,57};
-        int[] check = Arrays.copyOfRange(all, start, start + len);
-        int[] chars = string.chars().sorted().toArray();
-        return Arrays.equals(chars, check);
+        char[] all = {'0','1','2','3','4','5','6','7','8','9'};
+        if (start + len > string.length() + 1) {
+            return false;
+        }
+        for (int i = start; i < start + len; i++) {
+            if (string.indexOf(all[i]) < 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 

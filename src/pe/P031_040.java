@@ -36,14 +36,18 @@ class P031_040 {
 
         @Override
         public String get() {
-
             HashSet<Integer> m = new HashSet<>();
-            // 1-digit * 4-digits in map to avoid duplicate
+
+            // 1-digit * 4-digits in map to avoid duplicates
             for (int i = 2; i < 10; i++) {
-                for (int j = 1000; j < 10_000; j++) {
-                    String str =  String.format("%s%s%s", i, j, i * j);
+                int k = 10000/i;
+                for (int j = 1234; j < k; j++) {
+                    String str =  "" + i + j + i * j;
                     if (str.length() != 9) {
-                        break; // don't continue to iterate if result is more than 9 digits
+                        break;
+                    }
+                    if (str.indexOf('0') != -1) {
+                        continue;
                     }
                     if (isPandigital(str, 1, 9)) {
                         m.add(i * j);
@@ -51,12 +55,16 @@ class P031_040 {
                 }
             }
 
-            // 2-digits * 3-digits in map to avoid dups
+            // 2-digits * 3-digits in map to avoid duplicates
             for (int i = 11; i < 100; i++) {
-                for (int j = 100; j < 1_000; j++) {
-                    String str =  String.format("%s%s%s", i, j, i * j);
+                int k = 10000/i;
+                for (int j = 100; j < k; j++) {
+                    String str =  "" + i + j + i * j;
                     if (str.length() != 9) {
-                        break; // don't continue to iterate if result is more than 9 digits
+                        break;
+                    }
+                    if (str.indexOf('0') != -1) {
+                        continue;
                     }
                     if (isPandigital(str, 1, 9)) {
                         m.add(i * j);
