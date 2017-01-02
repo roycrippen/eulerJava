@@ -6,19 +6,18 @@ import java.util.List;
 
 import static java.lang.Math.sqrt;
 
-@SuppressWarnings("WeakerAccess")
-public class Primes {
+class Primes {
 
     // returns a list of the prime factors of n
-    public static List<Long> primeFactors(long n) {
-        List<Long> xs = new ArrayList<>();
+    static List<Integer> primeFactors(long n) {
+        List<Integer> xs = new ArrayList<>();
 
         while (n % 2 == 0) {
-            xs.add(2L);
+            xs.add(2);
             n /= 2;
         }
 
-        long factor = 3;
+        int factor = 3;
         while (sqrt(n) > 1) {
             while (n % factor == 0) {
                 xs.add(factor);
@@ -31,7 +30,7 @@ public class Primes {
 
 
     // fill array of length n with true for prime indexes and false for non-prime
-    public static Boolean[] getPrimes(int n) {
+    static Boolean[] getPrimes(int n) {
         Boolean[] primes = new Boolean[n];
         Arrays.fill(primes, true);
         primes[0] = primes[1] = false;
@@ -48,8 +47,8 @@ public class Primes {
 
     // nth prime
     // nthPrime_10 from https://bitbucket.org/dafis/javaprimes/src
-     public static int nthPrime(int n) {
-        if (n < 2) return 2;
+     static int nthPrime(int n) {
+        if (n  < 2) return 2;
         if (n == 2) return 3;
         if (n == 3) return 5;
         int limit, root, count = 2;
@@ -106,7 +105,4 @@ public class Primes {
         }
         return 3*p+1+(p&1);
     }
-
-
-
 }

@@ -1,7 +1,9 @@
 package pe;
 
-import java.util.*;
-import java.util.function.*;
+
+import java.util.HashSet;
+import java.util.TreeMap;
+import java.util.function.Supplier;
 
 import static pe.Common.isPandigital;
 import static pe.Utils.assertEq;

@@ -7,11 +7,10 @@ import java.util.stream.LongStream;
 import static java.lang.Math.abs;
 import static java.lang.Math.floor;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class Common {
+class Common {
 
     // return true if value n is a palindrome (reads the same backward or forward)
-    public static boolean isPalindrome(long n) {
+    static boolean isPalindrome(long n) {
         String s = String.valueOf(n);
 
         while (true) {
@@ -33,7 +32,8 @@ public class Common {
 
     // recursive version
     // return true if value n is a palindrome (reads the same backward or forward)
-    public static boolean isPalindrome2(long n) {
+    @SuppressWarnings("unused")
+    static boolean isPalindrome2(long n) {
         return isPalindromeHelper(String.valueOf(n));
     }
 
@@ -51,7 +51,8 @@ public class Common {
 
 
     // return greatest common divisor of m and n
-    public static long gcd(long m, long n) {
+    @SuppressWarnings("WeakerAccess")
+    static long gcd(long m, long n) {
         while(m != 0) {
             long m_old = m;
             m = n % m;
@@ -63,26 +64,39 @@ public class Common {
 
     // recursive version
     // return greatest common divisor of m ans n
-    public static long gcd2(long m, long n) {
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    static long gcd2(long m, long n) {
         return (m == 0) ? abs(n): gcd2(n % m, m);
     }
 
 
     // return least common multiple of m and n
-    public static long lcm(long m, long n) {
+    static long lcm(long m, long n) {
         return abs(m * n) / gcd(m, n);
     }
 
 
     // return array of factors of n
-    public static int[] factors(int n) {
-        return IntStream
-                .rangeClosed(1, n).filter(x -> n % x == 0).toArray();
+    // from https://rosettacode.org/wiki/Factors_of_an_integer#C.2B.2B
+    @SuppressWarnings({"WeakerAccess", "unused"})
+    static List<Integer> factors(int n) {
+        List<Integer> factors = new ArrayList<>();
+        factors.add(1);
+        factors.add(n);
+        for(int i = 2; i * i <= n; ++i) {
+            if(n % i == 0) {
+                factors.add(i);
+                if(i * i != n)
+                    factors.add(n / i);
+            }
+        }
+        Collections.sort(factors);
+        return factors;
     }
 
 
     // return N! as a Long
-    public static Long factorial(long n) {
+    private static Long factorial(long n) {
         if (n < 0 || n > 20) {
             return 1L;
         } else {
@@ -95,7 +109,7 @@ public class Common {
 
     // return word representation of number n
     // from http://stackoverflow.com/questions/2729752/converting-numbers-in-to-words-c-sharp
-    public static String numberToWords(int number) {
+    static String numberToWords(int number) {
         if (number == 0)
             return "zero";
 
@@ -142,7 +156,7 @@ public class Common {
 
 
     // return array containing `divisor_sum`(i) for i from 0 to n.
-    public static int[] divisorSumList(int limit) {
+    static int[] divisorSumList(int limit) {
         int[] xs = new int[limit + 1];
         for (int i = 1; i <= limit / 2; i++) {
             int j = 2 * i;
@@ -156,7 +170,7 @@ public class Common {
 
 
     // return nth lexicographic permutation, recursive
-    public static int[] nthLexPerm(int[] lmr, int n) {
+    static int[] nthLexPerm(int[] lmr, int n) {
         if (lmr.length == 0) {
             return new int[0];
         } else {
@@ -172,7 +186,8 @@ public class Common {
 
     // return if pandigital over 'len' ints from 'start'
     // isPandigital("456123", 1, 6) == true, isPandigital("4560123", 0, 7) == true
-    public static boolean isPandigital(String string, int start, int len) {
+    @SuppressWarnings("SameParameterValue")
+    static boolean isPandigital(String string, int start, int len) {
         char[] all = {'0','1','2','3','4','5','6','7','8','9'};
         if (start + len > string.length() + 1) {
             return false;

@@ -5,12 +5,11 @@ import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class Utils {
+class Utils {
 
     // common assertion check for Project Euler problems
     // returns success string or exits application of result and answer are different
-    public static String assertEq(long result, long answer, String problem) {
+    static String assertEq(long result, long answer, String problem) {
         if (answer != result) {
             System.out.println("ERROR: solution for " + problem + " is wrong.");
             System.out.println("calculated result = " + result);
@@ -23,7 +22,7 @@ public class Utils {
 
 
     // return text file from resource folder
-    public static List<String> readTextFile(String fileName) {
+    static List<String> readTextFile(String fileName) {
 
         //Get file from resources folder
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
@@ -40,7 +39,7 @@ public class Utils {
 
 
     // return single solution matching key s
-    public static Supplier<String> getOneSolution(String s, TreeMap<Integer, Supplier<String>> m) {
+    static Supplier<String> getOneSolution(String s, TreeMap<Integer, Supplier<String>> m) {
         Scanner sc = new Scanner(s);
         if (!sc.hasNextInt()) {
             System.out.println("'" + s + "' is not a valid positive integer.\nAborting.");

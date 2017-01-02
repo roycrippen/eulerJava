@@ -3,7 +3,10 @@ package pe;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.function.*;
+import java.util.function.IntUnaryOperator;
+import java.util.function.LongUnaryOperator;
+import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 

@@ -1,7 +1,11 @@
 package pe;
 
-import java.util.*;
-import java.util.function.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.function.IntToLongFunction;
+import java.util.function.LongUnaryOperator;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -76,7 +80,7 @@ class P001_010 {
         public String get() {
 
             LongUnaryOperator solve;
-            solve = n -> Primes.primeFactors(n).stream().max(Long::compare).orElse(0L);
+            solve = n -> Primes.primeFactors(n).stream().max(Integer::compare).orElse(0);
 
             assertEq(solve.applyAsLong(13195), 29, "p003 test");
 

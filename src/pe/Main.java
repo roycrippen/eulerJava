@@ -4,8 +4,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Supplier;
 
-@SuppressWarnings("WeakerAccess")
-public class Main {
+class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
@@ -38,6 +37,4 @@ public class Main {
         System.out.println("\ndone, completed " + allSolutions.size() + " problems in " + elapsedTime + " milliseconds");
 
     }
-
-
 }
