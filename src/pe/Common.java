@@ -96,7 +96,8 @@ class Common {
 
 
     // return N! as a Long
-    private static Long factorial(long n) {
+    @SuppressWarnings({"WeakerAccess"})
+    static Long factorial(long n) {
         if (n < 0 || n > 20) {
             return 1L;
         } else {
