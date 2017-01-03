@@ -1,11 +1,12 @@
 package pe;
 
 
-import java.util.HashSet;
-import java.util.TreeMap;
+import java.io.PrintStream;
+import java.util.*;
 import java.util.function.Supplier;
 
 import static pe.Common.isPandigital;
+import static pe.FunctionalInterfaceExtensions.IntIntFunction;
 import static pe.Utils.assertEq;
 
 class P031_040 {
@@ -81,17 +82,42 @@ class P031_040 {
 
 
     // problem 33 ----------------------------------------------
-    //
+    // Digit cancelling fractions
     private static class p033 implements Supplier<String> {
 
         @Override
         public String get() {
+            final double EPSILON = 0.0000001;
 
-            long res = 0;
-            return assertEq(res, 0, "p033");
+            IntIntFunction<Boolean> isDigitCancelingFraction;
+            isDigitCancelingFraction = (n, d) -> {
+                double[] ns = String.valueOf(n).chars().mapToDouble(x -> x - 48.0).toArray();
+                double[] ds = String.valueOf(d).chars().mapToDouble(x -> x - 48.0).toArray();
+
+                if (ns[0] == ds[1]) {
+                    return Math.abs(ns[1] / ds[0] - (double) n / (double) d) < EPSILON;
+                } else if (ns[1] == ds[0]) {
+                    return Math.abs(ns[0] / ds[1] - (double) n / (double) d) < EPSILON;
+                }
+                return false;
+            };
+
+
+            int prodNum = 1;
+            int prodDen = 1;
+            for (int i = 10; i < 100 ; i++) {
+                for (int j = i + 1; j < 100; j++) {
+                    if (isDigitCancelingFraction.apply(i, j)) {
+                        prodNum *= i;
+                        prodDen *= j;
+                    }
+                }
+            }
+
+            long res = prodDen / Common.gcd(prodNum, prodDen);
+            return assertEq(res, 100, "p033");
         }
     }
-
 
     // problem 34 ----------------------------------------------
     //

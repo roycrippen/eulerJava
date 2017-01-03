@@ -265,7 +265,7 @@ class P001_010 {
                     case 7:
                         return 10L;
                     default:
-                        Boolean[] primes = Primes.getPrimes(n);
+                        boolean[] primes = Primes.getPrimes(n);
                         long sum = 10;
                         for (int i = 7; i <= n; i += 2) {
                             if (primes[i]) {

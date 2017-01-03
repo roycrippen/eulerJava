@@ -193,7 +193,7 @@ class P021_030 {
         public String get() {
 
             final int N = Primes.nthPrime(15_000);
-            Boolean[] primes = Primes.getPrimes(N+1);
+            boolean[] primes = Primes.getPrimes(N+1);
 
             int[] bs = IntStream.rangeClosed(0, 1000)
                     .filter(x -> primes[x])

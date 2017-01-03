@@ -30,8 +30,8 @@ class Primes {
 
 
     // fill array of length n with true for prime indexes and false for non-prime
-    static Boolean[] getPrimes(int n) {
-        Boolean[] primes = new Boolean[n];
+    static boolean[] getPrimes(int n) {
+        boolean[] primes = new boolean[n];
         Arrays.fill(primes, true);
         primes[0] = primes[1] = false;
         for (int i = 2; i < primes.length; i++) {
