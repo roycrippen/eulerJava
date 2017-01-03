@@ -11,44 +11,25 @@ class Common {
 
     // return true if value n is a palindrome (reads the same backward or forward)
     static boolean isPalindrome(long n) {
-        String s = String.valueOf(n);
-
-        while (true) {
-            int len = s.length();
-            switch (len) {
-                case 1:
-                    return true;
-                case 2:
-                    return s.charAt(0) == s.charAt(1);
-                default:
-                    if (s.charAt(0) != s.charAt(len - 1))
-                        return false;
-                    else
-                        s = s.substring(1, len - 1);
-            }
+        long rev = 0;
+        long num = n;
+        while (num > 0) {
+            rev = rev * 10 + num % 10;
+            num /= 10;
         }
+        return rev == n;
     }
 
-
-    // recursive version
-    // return true if value n is a palindrome (reads the same backward or forward)
-    @SuppressWarnings("unused")
-    static boolean isPalindrome2(long n) {
-        return isPalindromeHelper(String.valueOf(n));
-    }
-
-    private static boolean isPalindromeHelper(String s) {
-        int len = s.length();
-        switch (len) {
-            case 1:
-                return true;
-            case 2:
-                return s.charAt(0) == s.charAt(1);
-            default:
-                return s.charAt(0) == s.charAt(len - 1) && isPalindromeHelper(s.substring(1, len - 1));
+    // return true if value binary of n is a palindrome (reads the same backward or forward)
+    static boolean isPalindromeBinary(long n) {
+        long reversed = 0;
+        long aux = n;
+        while (aux > 0) {
+            reversed = (reversed  << 1) | (aux & 1);
+            aux = aux >> 1;
         }
+        return reversed  == n;
     }
-
 
     // return greatest common divisor of m and n
     @SuppressWarnings("WeakerAccess")

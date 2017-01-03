@@ -1,5 +1,6 @@
 package pe;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +8,13 @@ import java.util.List;
 import static java.lang.Math.sqrt;
 
 class Primes {
+
+    // return true if n is probably prime
+    // convenience wrapper
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    static boolean isPrime(long n) {
+        return BigInteger.valueOf(n).isProbablePrime(10);
+    }
 
     // returns a list of the prime factors of n
     static List<Integer> primeFactors(long n) {
